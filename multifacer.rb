@@ -1,15 +1,20 @@
 require_relative 'lib/face'
 require_relative 'lib/face_generator'
 
-generator = FaceGenerator.from_yaml('face_parts.yml')
+collection = FaceGenerator.from_yaml('face_parts.yml')
 
-def play(collection)
-  system "clear"
-  puts collection.sample
-  sleep 0.5
+parts = [:top, :eyes, :nose, :mouth]
+
+def play(number, delay = 0.5)
+  number.times do
+    system "clear"
+    yield
+    sleep delay
+  end
 end
 
-20.times { play(generator) }
+face = collection.sample
 
-puts
-puts
+play(20) do
+  puts face.modify(collection, parts.sample)
+end
