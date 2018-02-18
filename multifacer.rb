@@ -1,7 +1,7 @@
 require_relative 'lib/face'
 require_relative 'lib/face_generator'
 
-collection = FaceGenerator.from_yaml('face_parts.yml')
+collection = FaceGenerator.from_yaml('data/face_parts.yml')
 
 parts = [:top, :eyes, :nose, :mouth]
 
